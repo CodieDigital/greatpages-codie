@@ -1,0 +1,135 @@
+<style> 
+  .custom-menu-left .custom-menu-content svg {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 40px;
+    width: auto;
+  }
+  
+.custom-menu-button {
+      padding: 3px 0 0 !important;
+      background: transparent !important;
+  }
+
+.custom-menu-content {
+background: #202020;
+    color: #fff !important;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  transform: translateX(-100%);
+}
+
+  .custom-menu-button svg {
+      color: #fff !important;
+    width: 23px !important;
+    height: auto !important;
+  }
+
+.custom-menu {
+      box-shadow: unset !important;
+    top: 11px !important;
+    right: 23px !important;
+  background: transparent !important;
+  
+}
+
+
+.custom-menu-left .custom-menu-content {
+    right: 0 !important;
+    left: unset !important;
+}
+
+.custom-menu-content a {
+    color: #fff !important;
+    text-align: center;
+}
+
+  </style>
+
+<style>
+  #menucodie {
+transition: 0.3s;
+}
+  
+    /* Personalize o seu menu (ALTERE AQUI)*/
+  .abrir {
+    transition: 0.3s;
+    transform: translateX(0) !important;
+  }
+
+    :root {
+      --color-icon: #268DF3; /* Cor do ícone */
+      --color-background-icon: #FFFFFF; /* Cor de fundo do ícone */
+      --text-color: #268DF3; /* Cor do texto */
+      --text-background-color: #FFFFFF; /* Cor de fundo do menu */
+      --hover-color: #B0C4DE; /* Cor de fundo ao passar o mouse */
+      --menu-icon-size: 15px; /* Tamanho do ícone do menu */
+      --menu-position: left; /* Altere para 'right' se desejar o menu à direita, 'left' para inserir na esquerda. */
+    }
+  
+    /* Configurações gerais para o menu (NÃO ALTERAR) */
+
+   @media (min-width: 768px) {
+  .custom-menu {
+    display: none;
+    }
+  }
+
+    .custom-menu { background: var(--color-background-icon);box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);border-radius: 20%; padding: 5px; position: fixed; margin-top: 110px; margin-left: 15px; top: 0; z-index: 9000; }
+    .custom-menu-right { right: 20px; }
+    .custom-menu:hover .custom-menu-content { display: block; }
+    .custom-menu-button { color: var(--color-icon); background-color: transparent; padding: 10px; font-size: var(--menu-icon-size); text-transform: uppercase; cursor: pointer; font-weight: bold; border: none; }
+    .custom-menu-content { background-color: var(--text-background-color); min-width: 170px; position: absolute; display: none; }
+    .custom-menu-content a { color: var(--text-color); padding: 10px 14px; text-decoration: none; font-size: 15px; display: block; }
+    .custom-menu-content a:hover { background-color: var(--hover-color); }
+    .custom-menu-right .custom-menu-content { left: auto; right: 15px; }  
+    .custom-menu-left .custom-menu-content { left: 15px; }
+
+  </style>
+
+  <div  class="custom-menu custom-menu-{{menuPosition}}">
+
+    <button id="test" class="custom-menu-button"><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 448 512" style="width: var(--menu-icon-size); height: var(--menu-icon-size);"><path fill="currentColor" d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></button>
+    
+    <div id="menucodie" class="custom-menu-content">
+      <svg id="closemenucodie" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.9997 10.5865L16.9495 5.63672L18.3637 7.05093L13.4139 12.0007L18.3637 16.9504L16.9495 18.3646L11.9997 13.4149L7.04996 18.3646L5.63574 16.9504L10.5855 12.0007L5.63574 7.05093L7.04996 5.63672L11.9997 10.5865Z"></path></svg>
+        
+      <div class="menu-content-url">
+
+        <a href="https://URL_DA_PÁGINA/">Subtítulo1</a> 
+        <a href="https://URL_DA_PÁGINA/">Subtítulo2</a> 
+        <a href="https://URL_DA_PÁGINA/">Subtítulo3</a> 
+        
+      </div>
+    </div>
+
+  </div>
+  <script>
+
+  
+    document.addEventListener('click', function (event) { if (!document.querySelector('.custom-menu').contains(event.target)) { document.querySelector('.custom-menu-content').style.display = ''; } });
+  
+    window.addEventListener('scroll', function () { document.querySelector('.custom-menu').style.top = 0; });
+  
+    var menuPosition = getComputedStyle(document.documentElement).getPropertyValue('--menu-position');
+
+    if (menuPosition.trim() === 'right') {
+      document.querySelector('.custom-menu').classList.add('custom-menu-right');
+    } else { document.querySelector('.custom-menu').classList.add('custom-menu-left'); }
+
+    document.getElementById('test').addEventListener('click', function() {
+      document.getElementById('menucodie').classList.add('abrir');
+  })
+
+
+document.getElementById('closemenucodie').addEventListener('click', function() {
+    document.getElementById('menucodie').classList.remove('abrir');
+});
+</script>
